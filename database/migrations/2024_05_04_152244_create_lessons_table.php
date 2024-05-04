@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +16,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->integer('course_id');
-            $table->foreign('course_id')->references('id')->on('courses');
             $table->integer('period'); //количество часов для прохождения
+
+            $table->foreignIdFor(Course::class, 'course_id')
+                ->nullable()
+                ->index()
+                ->constrained()
+                ->cascadeOnDelete();
         });
     }
 };

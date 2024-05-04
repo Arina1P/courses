@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +15,15 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreign('type_id')->references('id')->on('types');
             $table->text('description');
             $table->float('price');
             $table->integer('period');
+
+            $table->foreignIdFor(Type::class, 'type_id')
+                ->nullable()
+                ->index()
+                ->constrained()
+                ->cascadeOnDelete();
         });
     }
 };
