@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Course;
 use App\Models\Type;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -25,5 +26,19 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
         });
+
+        $javaType = Type::query()->where('title', 'Java')->first();
+
+        if ($javaType) {
+            Course::query()->insert([
+                [
+                    'title' => 'Java Course',
+                    'description' => 'Описание курса по Java',
+                    'price' => 99.99,
+                    'period' => 30,
+                    'type_id' => $javaType->getKey(),
+                ]
+            ]);
+        }
     }
 };

@@ -13,6 +13,8 @@ class Lesson extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);

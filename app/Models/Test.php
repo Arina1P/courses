@@ -11,6 +11,8 @@ class Test extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class);

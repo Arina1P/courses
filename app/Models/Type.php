@@ -10,6 +10,8 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function courses(): HasMany
     {
         return $this->hasMany(Course::class);
