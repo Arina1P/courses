@@ -1,3 +1,5 @@
+скопировать .env.example в .env
+
 composer install
 
 запустить докер 
